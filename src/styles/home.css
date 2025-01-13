@@ -1,0 +1,23 @@
+.chat-list {
+  height: calc(100vh - 130px);
+  overflow-y: auto;
+}
+.cht-list {
+  cursor: pointer;
+}
+
+.chat-list .text-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Pastikan rata kanan */
+  gap: 2px; /* Jarak kecil antara waktu dan centang */
+}
+
+.chat-body {
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+.textarea-auto {
+  resize: none;
+  overflow: hidden;
+}

@@ -1,0 +1,64 @@
+.login-container {
+  padding: 0 !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.left-section {
+  background-color: #669820;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0; /* Tambahkan padding atas dan bawah untuk logo */
+}
+
+.left-section img {
+  max-width: 200px;
+}
+
+.right-section {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.btn-fs {
+  background-color: #669820 !important;
+  color: #fff !important;
+}
+
+.btn-fs:hover {
+  background-color: #3a6103 !important;
+  color: #fff !important;
+}
+
+.form-control:focus {
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .login-container {
+    flex-direction: row;
+  }
+
+  .left-section,
+  .right-section {
+    flex: 1;
+    height: 100vh;
+  }
+
+  .left-section {
+    padding: 0; /* Hapus padding atas dan bawah untuk tampilan desktop */
+  }
+
+  .right-section {
+    padding: 50px;
+  }
+}

@@ -1,0 +1,21 @@
+/* Menu Section */
+.menu-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px 0;
+}
+.menu-item:hover {
+  background-color: #e9ecef;
+  border-radius: 4px;
+}
+.menu-item i {
+  font-size: 20px;
+}

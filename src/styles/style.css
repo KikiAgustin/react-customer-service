@@ -1,0 +1,13 @@
+.nav-item {
+  cursor: pointer;
+}
+.sidebar {
+  width: 70px;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+.sidebar .nav-item {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
