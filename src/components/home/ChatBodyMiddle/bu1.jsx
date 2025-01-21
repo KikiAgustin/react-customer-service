@@ -1,71 +1,62 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import PropTypes from "prop-types";
 import { asyncReceiveChatDetail } from "../../../states/chatDetail/action";
 import ChatBodyMiddleItem from "./ChatBodyMiddleItem";
-import checkDone from "../../../assets/img/check.svg";
-import check from "../../../assets/img/check2.svg";
 
-function ChatBodyMiddle({ profile }) {
-  const messages = useSelector((state) => state.chatDetail);
-
+function ChatBodyMiddle() {
+  const message = useSelector((state) => state.chatDetail || null);
   const [searchParams] = useSearchParams();
   const selectedChat = searchParams.get("chatId");
 
   const chatBodyRef = useRef(null);
   const dispatch = useDispatch();
 
-  // Dispatch untuk mendapatkan detail chat
+  console.log(message);
+
   useEffect(() => {
-    dispatch(asyncReceiveChatDetail(selectedChat));
+    asyncReceiveChatDetail(selectedChat);
   }, [dispatch, selectedChat]);
 
-  // Scroll otomatis ke bawah
   const scrollToBottom = () => {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
     }
   };
 
+  const transformedMessages =
+    message?.text?.map((msg) => ({
+      id: msg.id,
+      text: msg.pesan.replace(/<\/?[^>]+(>|$)/g, ""),
+      isSent: msg.pesan.includes("sent"),
+    })) || [];
+
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [transformedMessages]);
 
   return (
     <div>
       <div className="chat-body p-3" ref={chatBodyRef}>
-        <p className="text-center">{profile?.create}</p>
-
-        {messages.map((message) => (
+        {transformedMessages.map((message) => (
           <ChatBodyMiddleItem
             key={message.id}
             classChat={`d-flex ${
-              message.check == null ? "" : "justify-content-end"
+              message.isSent ? "justify-content-end" : ""
             } mb-3`}
             classChatItem={`p-2 ${
-              message.check == null
-                ? "bg-light fill-chat"
-                : "fill-chat bg-dark text-white"
+              message.isSent ? "bg-primary text-white" : "bg-light"
             } rounded`}
-            chat={message.pesan}
-            time={message.jam}
-            check={
-              message.check == null ? (
-                ""
-              ) : (
-                <img src={message.check ? checkDone : check} width={14} />
-              )
-            }
+            chat={message.text}
+            style={{
+              marginLeft: message.isSent ? "10%" : "0",
+              marginRight: !message.isSent ? "10%" : "0",
+            }}
           />
         ))}
       </div>
     </div>
   );
 }
-
-ChatBodyMiddle.propTypes = {
-  profile: PropTypes.object,
-};
 
 export default ChatBodyMiddle;

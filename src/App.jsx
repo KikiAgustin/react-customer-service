@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "./components/Loading";
 import LoginPage from "./pages/LoginPage";
@@ -13,6 +13,7 @@ import { asyncPreloadProsess } from "./states/isPreload/action";
 import { asyncUnsetAuthUser } from "./states/authUser/action";
 
 function App() {
+  const navigate = useNavigate();
   const authUser = useSelector((state) => state.authUser || null);
   const isPreload = useSelector((state) => state.isPreload || false);
 
@@ -24,6 +25,7 @@ function App() {
 
   const onSignOut = () => {
     dispatch(asyncUnsetAuthUser());
+    navigate("/");
   };
 
   if (isPreload) {

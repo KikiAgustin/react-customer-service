@@ -9,8 +9,8 @@
 .chat-list .text-end {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Pastikan rata kanan */
-  gap: 2px; /* Jarak kecil antara waktu dan centang */
+  align-items: flex-end;
+  gap: 2px;
 }
 
 .chat-body {
@@ -20,4 +20,34 @@
 .textarea-auto {
   resize: none;
   overflow: hidden;
+}
+
+#send-btn {
+  max-width: 6% !important;
+}
+
+.rounded-circle {
+  width: 100%;
+  max-width: 50px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.text-muted {
+  transition: opacity 0.3s ease;
+}
+.text-muted.hidden {
+  opacity: 0;
+}
+
+.fill-chat {
+  max-width: 90% !important;
+}
+
+.time-chat {
+  font-size: 11px !important;
+  display: flex;
+  justify-content: flex-end;
 }
