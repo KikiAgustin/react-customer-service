@@ -227,6 +227,40 @@ const api = (() => {
     return null;
   }
 
+  async function sendChatMessage({ chatId, message }) {
+    const token = getAccessToken();
+    if (token !== null) {
+      const userid = decodeUserid(token);
+      if (chatId !== null) {
+        try {
+          const formData = new URLSearchParams();
+          formData.append("function", "send");
+          formData.append("nickname", "dzkrrbb");
+          formData.append("message", message);
+
+          const response = await fetch(
+            `${BASE_URL}member/chatkonsultan/${chatId}/${userid}/1111`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              body: formData.toString(),
+            }
+          );
+
+          const responseJson = await response.json();
+
+          return responseJson;
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }
+    }
+
+    return null;
+  }
+
   return {
     putAccessToken,
     getAccessToken,
@@ -238,6 +272,7 @@ const api = (() => {
     getDetailChatProfile,
     getDetailChat,
     getStatusType,
+    sendChatMessage,
   };
 })();
 

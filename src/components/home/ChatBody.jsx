@@ -12,7 +12,6 @@ function ChatBody() {
   const [searchParams] = useSearchParams();
   const selectedChat = searchParams.get("chatId");
 
-  const message = useSelector((state) => state.chatDetail || null);
   const chatDetailProfile = useSelector(
     (state) => state.chatDetailProfile || null
   );
@@ -26,7 +25,7 @@ function ChatBody() {
   return selectedChat ? (
     <div className="col">
       <ChatBodyTop profile={chatDetailProfile} />
-      <ChatBodyMiddle message={message} profile={chatDetailProfile} />
+      <ChatBodyMiddle profile={chatDetailProfile} />
       <ChatBodyBottom />
     </div>
   ) : (

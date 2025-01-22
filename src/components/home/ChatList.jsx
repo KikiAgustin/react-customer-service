@@ -55,8 +55,8 @@ function ChatList({ chatCustomers, chatConsultants }) {
               image={chat.avatar}
               name={chat.nama}
               lastChat={chat.tanggal}
-              time={chat.sec}
               onClick={() => onChatClick(chat.chat_id)}
+              finish={chat.finish}
             />
           ))
         ) : (
